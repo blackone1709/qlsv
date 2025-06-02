@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sinh viên</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        form input {
+            margin: 5px;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table th, table td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+        table th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Thêm sinh viên mới</h2>
+    <form id="studentForm">
+        <input type="text" id="name" placeholder="Tên sinh viên" required>
+        <input type="text" id="studentId" placeholder="Mã sinh viên" required>
+        <input type="date" id="dob" required>
+        <input type="text" id="class" placeholder="Lớp" required>
+        <input type="number" id="score" placeholder="Điểm" step="0.01" required>
+        <input type="text" id="major" placeholder="Ngành học" required>
+        <button type="submit">Thêm sinh viên</button>
+        
+    </form>
+    <input type="text" id="searchByIdInput" placeholder="Nhập mã sinh viên để tìm..." style="margin-bottom:10px; padding:5px;">
+    <button type="button" onclick="searchById()">Tìm</button>
+        <!-- Modal sửa sinh viên -->
+    <div id="editModal" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:30px; border-radius:8px; min-width:320px; max-width:90vw; margin:auto; position:relative;">
+            <h3>Sửa thông tin sinh viên</h3>
+            <form id="editStudentForm">
+                <input type="text" id="editStudentId" placeholder="Mã sinh viên" readonly>
+                <input type="text" id="editName" placeholder="Tên sinh viên" required>
+                <input type="date" id="editDob" required>
+                <input type="text" id="editClass" placeholder="Lớp" required>
+                <input type="number" id="editScore" placeholder="Điểm" step="0.01" required>
+                <input type="text" id="editMajor" placeholder="Ngành học" required>
+                <div style="margin-top:10px;">
+                    <button type="submit">Lưu</button>
+                    <button type="button" onclick="closeEditModal()">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h2>Danh sách sinh viên</h2>
+    <table id="studentTable" border="11">
+        <thead>
+            <tr>
+                <th onclick="sortStudents('studentId')">Mã SV &#x25B2;&#x25BC;</th>
+                <th onclick="sortStudents('name')">Tên &#x25B2;&#x25BC;</th>
+                <th onclick="sortStudents('dob')">Ngày sinh &#x25B2;&#x25BC;</th>
+                <th onclick="sortStudents('class')">Lớp &#x25B2;&#x25BC;</th>
+                <th onclick="sortStudents('score')">Điểm &#x25B2;&#x25BC;</th>
+                <th onclick="sortStudents('major')">Ngành &#x25B2;&#x25BC;</th>
+                 <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dữ liệu sinh viên sẽ hiển thị ở đây -->
+        </tbody>
+    </table>
+    <script src="js/tt.js"></script>
+</body>
+</html>
